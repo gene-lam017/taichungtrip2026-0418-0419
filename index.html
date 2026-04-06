@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中親子旅遊 4/18–19</title>
+<link href="https://fonts.googleapis.com/css2?Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ocean:    #1a6b8a;
+  --ocean-md: #2a8aad;
+  --ocean-lt: #e8f4f8;
+  --sand:     #f5ede0;
+  --sand-md:  #e8d5b8;
+  --sand-dk:  #c8a878;
+  --ink:      #1c2b35;
+  --ink-md:   #3a5060;
+  --ink-lt:   #7a9aaa;
+  --coral:    #d4624a;
+  --coral-lt: #fdeee9;
+  --teal:     #2d7a6e;
+  --teal-lt:  #e4f2ef;
+  --amber:    #c89040;
+  --white:    #fffdf8;
+  --warn:     #b85020;
+  --border:   #d8c8a8;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans TC',sans-serif; background:var(--sand); color:var(--ink); min-height:100vh; overflow-x:hidden; }
+.hand { font-family:'Noto Sans TC',sans-serif; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0e4d6a 0%, #1a6b8a 55%, #2a8aad 100%);
+  padding: 52px 24px 96px;
+  position: relative; overflow: hidden; color: white;
+}
+/* 手繪波浪底部 */
+.hero-wave {
+  position: absolute; bottom: -1px; left: 0; right: 0;
+}
+/* 手繪裝飾 SVG（浮在 hero 背景上） */
+.hero-deco {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none; overflow: hidden;
+}
+.hero-content { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; }
+.hero-kana {
+  font-size: 11px; letter-spacing: 0.18em; opacity: 0.7;
+  margin-bottom: 14px; font-weight: 300;
+}
+.hero h1 {
+  font-family:'Noto Sans TC',sans-serif;
+  font-size: 36px; line-height: 1.25; font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 1px 3px 10px rgba(0,0,0,0.2);
+}
+.hero-sub { font-size: 13px; opacity: 0.8; font-weight: 300; margin-bottom: 26px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-chip {
+  background: rgba(255,255,255,0.28);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 20px; padding: 5px 12px;
+  font-size: 11.5px; display: flex; align-items: center; gap: 5px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ── TABS ── */
+.tabs {
+  display: flex; background: var(--white);
+  border-bottom: 2px solid var(--sand-md);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 14px rgba(26,107,138,0.1);
+}
+.tab-btn {
+  flex: 1; padding: 13px 8px; border: none; background: transparent;
+  cursor: pointer; font-family:'Noto Sans TC',sans-serif;
+  font-size: 13px; color: var(--ink-lt);
+  border-bottom: 3px solid transparent; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.tab-icon { font-size: 17px; line-height: 1; }
+.tab-label { font-size: 12px; }
+.tab-sub { font-size: 9.5px; opacity: 0.55; }
+.tab-btn.active { color: var(--ocean); border-bottom-color: var(--ocean); }
+.tab-btn:nth-child(2).active { color: var(--teal); border-bottom-color: var(--teal); }
+.tab-btn:nth-child(3).active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTENT ── */
+.content { max-width: 480px; margin: 0 auto; padding: 22px 16px 90px; }
+.day-section { display: none; }
+.day-section.active { display: block; }
+
+/* ── DATE HEADER ── */
+.date-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 22px; padding: 15px 18px;
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px rgba(26,107,138,0.08);
+  position: relative; overflow: hidden;
+}
+.date-header::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 5px; height: 100%;
+  background: linear-gradient(180deg, var(--ocean), var(--ocean-md));
+  border-radius: 16px 0 0 16px;
+}
+.day2-hdr::before { background: linear-gradient(180deg, var(--teal), #3a9880); }
+.date-bubble {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--ocean-lt); border: 1.5px solid var(--ocean);
+  border-radius: 10px; padding: 6px 13px; flex-shrink: 0;
+}
+.day2-hdr .date-bubble { background: var(--teal-lt); border-color: var(--teal); }
+.date-bubble .dm { font-size: 9px; letter-spacing: 0.12em; color: var(--ocean); font-weight: 500; }
+.day2-hdr .date-bubble .dm { color: var(--teal); }
+.date-bubble .dd {
+  font-family:'Noto Sans TC',sans-serif; font-size: 26px; font-weight: 700;
+  color: var(--ocean); line-height: 1;
+}
+.day2-hdr .date-bubble .dd { color: var(--teal); }
+.date-info h2 { font-family:'Noto Sans TC',sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.date-info p { font-size: 11px; color: var(--ink-lt); margin-top: 3px; }
+
+/* ── STOP LIST ── */
+.stop-list { display: flex; flex-direction: column; }
+.stop-item { display: flex; position: relative; }
+.stop-item:not(:last-child)::after {
+  content: ''; position: absolute;
+  left: 17px; top: 44px; bottom: -6px; width: 2px;
+  background: repeating-linear-gradient(to bottom,
+    var(--sand-md) 0, var(--sand-md) 5px,
+    transparent 5px, transparent 9px);
+  z-index: 0;
+}
+.stop-left { width: 36px; flex-shrink: 0; padding-top: 14px; z-index: 1; display: flex; justify-content: center; }
+/* 手繪風節點 */
+.node-svg { width: 22px; height: 22px; }
+
+.stop-card {
+  flex: 1; background: var(--white);
+  border-radius: 14px; margin: 6px 0 6px 8px;
+  border: 1.5px solid var(--border);
+  padding: 13px 15px;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .15s, border-color .2s;
+  position: relative; overflow: hidden;
+}
+.stop-card:hover { border-color: var(--ocean); box-shadow: 0 4px 16px rgba(26,107,138,0.13); }
+.stop-card:active { transform: scale(0.985); }
+.stop-card.expanded { border-color: var(--ocean); box-shadow: 0 4px 20px rgba(26,107,138,0.15); }
+.day2 .stop-card:hover, .day2 .stop-card.expanded { border-color: var(--teal); box-shadow: 0 4px 16px rgba(45,122,110,0.13); }
+
+/* 頂部色條 */
+.sbar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--ocean), var(--ocean-md));
+  border-radius: 14px 14px 0 0; opacity: 0; transition: opacity .2s;
+}
+.stop-card.expanded .sbar { opacity: 1; }
+.sbar.meal { background: linear-gradient(90deg, var(--amber), #e0b060); }
+.sbar.hotel { background: linear-gradient(90deg, #5878b8, #88a0d8); }
+.sbar.teal { background: linear-gradient(90deg, var(--teal), #4aaa90); }
+
+.stop-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.stop-meta { flex: 1; }
+.stop-time { font-size: 10.5px; color: var(--ink-lt); letter-spacing: .04em; margin-bottom: 3px; font-weight: 300; }
+.stop-name { font-family:'Noto Sans TC',sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+.chip {
+  font-size: 9.5px; padding: 3px 8px; border-radius: 20px;
+  background: var(--ocean-lt); color: var(--ocean);
+  border: 1px solid rgba(26,107,138,0.22);
+  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+}
+.chip.meal { background: #fef6e4; color: var(--amber); border-color: rgba(200,144,64,0.28); }
+.chip.hotel { background: #eaedfc; color: #5070b8; border-color: rgba(80,112,184,0.25); }
+.chip.teal { background: var(--teal-lt); color: var(--teal); border-color: rgba(45,122,110,0.25); }
+
+.chev {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px;
+  color: var(--ink-lt); transition: transform .25s;
+}
+.stop-card.expanded .chev { transform: rotate(180deg); color: var(--ocean); }
+.day2 .stop-card.expanded .chev { color: var(--teal); }
+
+/* ── DETAIL ── */
+.detail { display: none; padding: 12px 0 4px; border-top: 1px dashed var(--sand-md); margin-top: 10px; }
+.stop-card.expanded .detail { display: block; }
+
+.drow { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; font-size: 12.5px; }
+.dico { width: 20px; flex-shrink: 0; margin-top: 1px; }
+.dtxt { color: var(--ink-md); line-height: 1.6; }
+.dtxt strong { color: var(--ink); font-weight: 500; }
+
+/* 手繪風警示框 */
+.warnbox {
+  background: #fff8f0;
+  border: 1.5px solid #f0c898;
+  border-radius: 10px;
+  padding: 9px 12px; font-size: 12px; color: var(--warn);
+  margin: 8px 0; line-height: 1.6;
+  position: relative;
+}
+.warnbox::before {
+  content: '✦'; font-size: 10px; margin-right: 5px; opacity: .7;
+}
+
+/* 麥當勞備案 */
+.mcd-head { font-size: 10px; color: var(--ink-lt); letter-spacing: .05em; margin-bottom: 8px; }
+.mcd-row {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--sand); border: 1px solid var(--sand-md);
+  border-radius: 10px; padding: 9px 12px; margin-bottom: 6px;
+}
+.mcd-info { flex: 1; }
+.mcd-info strong { display: block; font-size: 12.5px; color: var(--ink); margin-bottom: 1px; }
+.mcd-info span { font-size: 10.5px; color: var(--ink-lt); }
+
+.nav-a {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 4px; padding: 7px 13px; border: 1.5px solid var(--ocean);
+  color: var(--ocean); border-radius: 8px; font-size: 11px;
+  font-family:'Noto Sans TC',sans-serif; font-weight: 500;
+  text-decoration: none; transition: all .18s; flex-shrink: 0; white-space: nowrap;
+}
+.nav-a:hover { background: var(--ocean); color: white; }
+.nav-a.teal { border-color: var(--teal); color: var(--teal); }
+.nav-a.teal:hover { background: var(--teal); color: white; }
+.nav-a.full {
+  display: flex; width: 100%; margin-top: 10px;
+  background: var(--ocean); color: white; border-color: var(--ocean);
+}
+.nav-a.full:hover { background: var(--ocean-md); }
+.nav-a.full.teal { background: var(--teal); border-color: var(--teal); }
+.nav-a.full.teal:hover { background: #3a9880; }
+.nav-a.full.amber { background: var(--amber); border-color: var(--amber); }
+
+/* ── INFO ── */
+.sec-title {
+  font-family:'Noto Sans TC',sans-serif; font-size: 17px; font-weight: 700; color: var(--ink);
+  margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content:''; flex:1; height:1.5px; background: var(--sand-md); }
+.info-block { margin-bottom: 28px; }
+
+.tbl-wrap { background: var(--white); border-radius: 14px; overflow: hidden; border: 1.5px solid var(--border); }
+.tbl { width:100%; border-collapse: collapse; }
+.tbl th { background: var(--ocean-lt); color: var(--ink-md); font-size: 10px; letter-spacing: .07em; padding: 8px 12px; text-align: left; font-weight: 500; border-bottom: 1px solid var(--sand-md); }
+.tbl td { padding: 9px 12px; font-size: 12px; border-bottom: 1px solid var(--sand); color: var(--ink-md); }
+.tbl td:first-child { font-weight: 500; color: var(--ink); }
+.tbl tr:last-child td { border-bottom: none; }
+.free { color: var(--teal); font-weight: 500; }
+.paid { color: var(--coral); }
+
+.tip-row {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 11px 14px; margin-bottom: 8px;
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 12.5px; color: var(--ink-md); line-height: 1.6;
+}
+.tip-dot {
+  width: 8px; height: 8px; border: 2px solid var(--ocean);
+  border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+}
+
+.gift-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+  position: relative; overflow: hidden;
+}
+.gift-top { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ocean); }
+.gift-top.teal { background: var(--teal); }
+.gift-top.amber { background: var(--amber); }
+.gift-top.sand { background: var(--sand-dk); }
+.gift-loc { font-size: 10px; color: var(--ink-lt); margin-bottom: 5px; margin-top: 4px; letter-spacing: .04em; }
+.gift-name { font-family:'Noto Sans TC',sans-serif; font-size: 13px; font-weight: 400; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.gift-desc { font-size: 12px; color: var(--ink-md); line-height: 1.65; }
+
+.footer {
+  text-align: center; padding: 26px;
+  font-family:'Noto Sans TC',sans-serif; font-size: 13px; font-weight: 400;
+  color: var(--ink-lt); letter-spacing: .1em;
+}
+
+/* ── 手繪插圖 (inline SVG as pseudo illustrations) ── */
+/* hero 插圖 + 動畫 */
+.hero-illus { position: absolute; }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes sway { 0%,100%{transform:rotate(-4deg)} 50%{transform:rotate(4deg)} }
+@keyframes drift { 0%,100%{transform:translateX(0)} 50%{transform:translateX(8px)} }
+
+.stop-card { animation: riseIn .3s ease both; }
+@keyframes riseIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.stop-item:nth-child(1) .stop-card{animation-delay:.04s}
+.stop-item:nth-child(2) .stop-card{animation-delay:.09s}
+.stop-item:nth-child(3) .stop-card{animation-delay:.14s}
+.stop-item:nth-child(4) .stop-card{animation-delay:.19s}
+.stop-item:nth-child(5) .stop-card{animation-delay:.24s}
+
+@media(min-width:600px){
+  .hero{padding:64px 32px 60px}
+  .hero h1{font-size:44px}
+  .content{padding:28px 24px 100px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+
+  <!-- 手繪插圖裝飾 -->
+  <div class="hero-deco">
+    <!-- 海浪 -->
+    <svg style="position:absolute;bottom:30px;left:0;right:0;width:100%;opacity:.12" viewBox="0 0 400 60" preserveAspectRatio="none">
+      <path d="M0 40 Q50 10 100 40 Q150 70 200 40 Q250 10 300 40 Q350 70 400 40 L400 60 L0 60Z" fill="white"/>
+    </svg>
+    <!-- 魚 (右上，漂浮) -->
+    <svg class="hero-illus" style="top:18px;right:22px;width:70px;opacity:.22;animation:bob 4s ease-in-out infinite" viewBox="0 0 70 40" fill="none">
+      <ellipse cx="35" cy="22" rx="22" ry="12" fill="white"/>
+      <polygon points="57,22 70,10 70,34" fill="white"/>
+      <circle cx="20" cy="20" r="2.5" fill="#1a6b8a"/>
+      <path d="M28 16 Q35 10 42 16" stroke="#1a6b8a" stroke-width="1.2" fill="none"/>
+    </svg>
+    <!-- 海星 (左下) -->
+    <svg class="hero-illus" style="bottom:52px;left:16px;width:38px;opacity:.18;animation:sway 5s ease-in-out infinite" viewBox="0 0 40 40" fill="white">
+      <polygon points="20,2 24,15 37,15 27,23 31,37 20,29 9,37 13,23 3,15 16,15"/>
+    </svg>
+    <!-- 泡泡 -->
+    <svg class="hero-illus" style="top:30px;left:30px;width:50px;opacity:.1;animation:drift 6s ease-in-out infinite" viewBox="0 0 50 50" fill="none">
+      <circle cx="12" cy="38" r="6" stroke="white" stroke-width="1.5"/>
+      <circle cx="30" cy="20" r="10" stroke="white" stroke-width="1.5"/>
+      <circle cx="42" cy="36" r="5" stroke="white" stroke-width="1.5"/>
+    </svg>
+    <!-- 右下螃蟹輪廓 -->
+    <svg class="hero-illus" style="bottom:46px;right:14px;width:48px;opacity:.15" viewBox="0 0 48 36" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round">
+      <ellipse cx="24" cy="20" rx="14" ry="10"/>
+      <circle cx="17" cy="14" r="3"/><circle cx="31" cy="14" r="3"/>
+      <path d="M10 16 Q4 10 2 4"/><path d="M38 16 Q44 10 46 4"/>
+      <path d="M10 22 Q4 24 2 32"/><path d="M38 22 Q44 24 46 32"/>
+      <path d="M16 28 Q14 34 12 36"/><path d="M32 28 Q34 34 36 36"/>
+      <path d="M24 28 L24 36"/>
+    </svg>
+  </div>
+
+  <!-- 手繪波浪底 — 全藍色系，確保白色標籤可讀 -->
+  <svg class="hero-wave" viewBox="0 0 400 80" preserveAspectRatio="none" style="display:block">
+    <defs>
+      <linearGradient id="wg1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0a3d56"/>
+        <stop offset="100%" stop-color="#072e42"/>
+      </linearGradient>
+      <linearGradient id="wg2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0d5270"/>
+        <stop offset="100%" stop-color="#0a3d56"/>
+      </linearGradient>
+      <linearGradient id="wg3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a6b8a"/>
+        <stop offset="100%" stop-color="#0d5270"/>
+      </linearGradient>
+    </defs>
+    <!-- 最後面最深的一層 -->
+    <path d="M0 55 Q40 30 80 48 Q120 65 160 40 Q200 15 240 42 Q280 68 320 38 Q360 12 400 44 L400 80 L0 80Z" fill="url(#wg1)"/>
+    <!-- 中層 -->
+    <path d="M0 60 Q50 40 100 54 Q150 68 200 50 Q250 30 300 56 Q350 72 400 54 L400 80 L0 80Z" fill="url(#wg2)"/>
+    <!-- 前景最淺藍 -->
+    <path d="M0 68 Q60 52 120 62 Q180 72 240 58 Q300 42 360 62 Q385 70 400 64 L400 80 L0 80Z" fill="url(#wg3)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-kana">TA-I-CHU-NG · 家庭親子旅遊</div>
+    <h1>台中海線<br>兩天一夜</h1>
+    <p class="hero-sub">永和出發 · 自駕 · 梧棲區為住宿據點</p>
+    <div class="hero-chips">
+      <span class="hero-chip">🗓 4/18–19（六日）</span>
+      <span class="hero-chip">🏨 震大金鬱金香酒店</span>
+      <span class="hero-chip">🚗 全程自駕</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TABS ══ -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab(0)">
+    <!-- 手繪浪 icon -->
+    <svg class="tab-icon" width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M1 10 Q5 3 10 10 Q15 17 19 10"/>
+      <path d="M1 5 Q5 -2 10 5 Q15 12 19 5" opacity=".45"/>
+    </svg>
+    <span class="tab-label">Day 1</span>
+    <span class="tab-sub">4/18 週六</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab(1)">
+    <!-- 手繪鳥 icon -->
+    <svg class="tab-icon" width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M1 8 Q5 1 10 6 Q15 1 19 8"/>
+      <path d="M7 10 Q10 13 13 10"/>
+    </svg>
+    <span class="tab-label">Day 2</span>
+    <span class="tab-sub">4/19 週日</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab(2)">
+    <!-- 手繪地圖 icon -->
+    <svg class="tab-icon" width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="1,2 7,5 13,2 19,5 19,14 13,11 7,14 1,11"/>
+      <line x1="7" y1="5" x2="7" y2="14"/>
+      <line x1="13" y1="2" x2="13" y2="11"/>
+    </svg>
+    <span class="tab-label">資訊</span>
+    <span class="tab-sub">提醒 & 伴手禮</span>
+  </button>
+</div>
+
+<!-- ══ CONTENT ══ -->
+<div class="content">
+
+<!-- ════ DAY 1 ════ -->
+<div class="day-section active" id="tab0">
+  <div class="date-header">
+    <div class="date-bubble"><span class="dm">APR</span><span class="dd">18</span></div>
+    <div class="date-info">
+      <h2>梧棲海線直攻</h2>
+      <p>09:30 永和出發 · 全程梧棲/清水，不進市區</p>
+    </div>
+  </div>
+
+  <div class="stop-list">
+
+    <!-- ① 麥當勞 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <!-- 手繪漢堡節點 -->
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="3 2"/>
+          <text x="11" y="15.5" text-anchor="middle" font-size="9" fill="var(--amber)" font-family="'Noto Sans TC',sans-serif">餐</text>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar meal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">約 11:30</div>
+            <div class="stop-name">麥當勞得來速</div>
+          </div>
+          <span class="chip meal">午餐</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="mcd-head">兩間備案 — 從永和南下依序遇到</div>
+          <div class="mcd-row">
+            <div class="mcd-info">
+              <strong>首選｜清水中華餐廳 ★4.1</strong>
+              <span>清水區中華路459號 · 進梧棲前最順路</span>
+            </div>
+            <a class="nav-a" href="https://maps.google.com/?q=24.274144999999997,120.56963030000001" target="_blank">導航</a>
+          </div>
+          <div class="mcd-row">
+            <div class="mcd-info">
+              <strong>備案｜沙鹿中臺餐廳 ★3.6</strong>
+              <span>沙鹿區台灣大道七段333號 · 更早遇到</span>
+            </div>
+            <a class="nav-a teal" href="https://maps.google.com/?q=24.229541599999997,120.5740709" target="_blank">導航</a>
+          </div>
+          <div class="warnbox">兩間皆從國道4號下來往梧棲方向完全順路，不繞路。週六中午建議提前用 App 點餐，避免排隊。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 飯店 check in -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <rect x="3" y="4" width="16" height="14" rx="2.5" stroke="#5878b8" stroke-width="1.6"/>
+          <path d="M8 4V7M14 4V7" stroke="#5878b8" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="11" y="16" text-anchor="middle" font-size="8" fill="#5878b8" font-family="'Noto Sans TC',sans-serif">住</text>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar hotel"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">13:00（先寄放行李）</div>
+            <div class="stop-name">震大金鬱金香酒店</div>
+          </div>
+          <span class="chip hotel">Check in</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <!-- 手繪小圖標行 -->
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/>
+              <circle cx="9" cy="7" r="1.8"/>
+            </svg>
+            <div class="dtxt">台中市梧棲區築港路築港巷66號</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="9" cy="9" r="7"/>
+              <polyline points="9 5 9 9 12 11"/>
+            </svg>
+            <div class="dtxt">正式 Check in 15:00 · 退房 12:00<br>13:00 可先寄放行李，去海洋館後再回來入住</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <rect x="2" y="4" width="14" height="10" rx="2"/>
+              <path d="M2 8h14M6 4v4"/>
+            </svg>
+            <div class="dtxt">5樓兒童遊樂室（海洋主題，08:00–22:00）</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <rect x="1" y="5" width="16" height="9" rx="2"/>
+              <path d="M1 9h16"/><circle cx="5" cy="12" r="1.2"/><circle cx="13" cy="12" r="1.2"/>
+            </svg>
+            <div class="dtxt"><strong>免費</strong>室外大型停車場</div>
+          </div>
+          <a class="nav-a full" href="https://maps.google.com/?q=24.2597152,120.5288442" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 海洋館 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--ocean)" stroke-width="1.6"/>
+          <!-- 手繪魚 -->
+          <ellipse cx="11" cy="11" rx="5" ry="3" fill="var(--ocean-lt)" stroke="var(--ocean)" stroke-width="1"/>
+          <polygon points="16,11 19,8 19,14" fill="var(--ocean)" opacity=".5"/>
+          <circle cx="8.5" cy="10.5" r="1" fill="var(--ocean)"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">13:30 — 16:30</div>
+            <div class="stop-name">台中海洋館</div>
+          </div>
+          <span class="chip">景點</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/><circle cx="9" cy="7" r="1.8"/></svg>
+            <div class="dtxt">台中市清水區海洋路168號<br><small>鄰近梧棲觀光漁港，步行5分鐘</small></div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">週三至週一 10:00–18:00（最後入場17:00）<br><strong>每週二公休</strong> · 4/18 週六正常開放 ✓</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="14" height="10" rx="1.5"/><path d="M12 5V3a2 2 0 00-4 0v2"/><line x1="9" y1="9" x2="9" y2="13"/><line x1="7" y1="11" x2="11" y2="11"/></svg>
+            <div class="dtxt">全票 NT$500 · 115cm以上6歲以上學童 NT$400<br>115cm以下及未滿6歲 <strong>免費</strong></div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <path d="M3 10 Q5 5 9 8 Q13 11 15 6"/>
+              <circle cx="4" cy="13" r="1.5"/><circle cx="9" cy="13" r="1.5"/><circle cx="14" cy="13" r="1.5"/>
+            </svg>
+            <div class="dtxt">8大展區：企鵝開放式展示、360°鯊魚缸、水母光影牆、室內潮汐濕地、台中河川蓮型展缸⋯建議停留 2.5–3 小時</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="5" width="16" height="9" rx="2"/><path d="M1 9h16"/><circle cx="5" cy="12" r="1.2"/><circle cx="13" cy="12" r="1.2"/></svg>
+            <div class="dtxt">館內停車有限，建議停飯店（免費）再開車前往，或停梧棲漁港免費停車場步行過去</div>
+          </div>
+          <div class="warnbox">每場次有人數限制，<strong>務必提前至官網預購並指定場次</strong>（建議選13:30場）。4樓潮汐區可下水，請自備毛巾和拖鞋。</div>
+          <a class="nav-a full" href="https://maps.google.com/?q=24.296316200000003,120.5196121" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 高美濕地 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--ocean)" stroke-width="1.6"/>
+          <!-- 手繪風車 -->
+          <circle cx="11" cy="11" r="1.5" fill="var(--ocean)"/>
+          <path d="M11 9.5 L9 5 L13 5Z" fill="var(--ocean-md)" opacity=".7"/>
+          <path d="M12.3 11.8 L16 14 L14 10.5Z" fill="var(--ocean-md)" opacity=".7"/>
+          <path d="M9.7 11.8 L6 14 L8 10.5Z" fill="var(--ocean-md)" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">17:15 — 18:30</div>
+            <div class="stop-name">高美濕地</div>
+          </div>
+          <span class="chip">夕陽景點</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/><circle cx="9" cy="7" r="1.8"/></svg>
+            <div class="dtxt">台中市清水區大甲溪出海口</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="9" cy="8" r="4"/>
+              <line x1="9" y1="1" x2="9" y2="3"/><line x1="9" y1="13" x2="9" y2="15"/>
+              <line x1="2" y1="8" x2="4" y2="8"/><line x1="14" y1="8" x2="16" y2="8"/>
+              <path d="M3 13 Q9 10 15 13" stroke-width="1.2"/>
+            </svg>
+            <div class="dtxt">4月日落約18:20，17:15抵達最佳<br><strong>木棧道開放至 18:00</strong>，請注意時間</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="5" width="16" height="9" rx="2"/><path d="M1 9h16"/><circle cx="5" cy="12" r="1.2"/><circle cx="13" cy="12" r="1.2"/></svg>
+            <div class="dtxt">收費停車場，飯店開車約15分鐘</div>
+          </div>
+          <div class="warnbox">週六停車場假日壅擠，建議 17:00 前抵達停車。</div>
+          <a class="nav-a full" href="https://maps.google.com/?q=24.3132762,120.54518370000001" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 三井 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="2.5 2"/>
+          <!-- 手繪購物袋 -->
+          <path d="M7 10 L8 16 L14 16 L15 10Z" stroke="var(--amber)" stroke-width="1.2" fill="none"/>
+          <path d="M9 10 Q9 7 13 7 Q13 10 13 10" stroke="var(--amber)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar meal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">19:00 — 21:00</div>
+            <div class="stop-name">台中三井 Outlet</div>
+          </div>
+          <span class="chip meal">晚餐＋伴手禮</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/><circle cx="9" cy="7" r="1.8"/></svg>
+            <div class="dtxt">台中市梧棲區台灣大道10段168號</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">週六開放至 21:30</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><path d="M4 2L2 6v10a1 1 0 001 1h12a1 1 0 001-1V6l-2-4z"/><line x1="2" y1="6" x2="16" y2="6"/><path d="M12 10a3 3 0 01-6 0"/></svg>
+            <div class="dtxt">伴手禮推薦：<strong>Whittard 英國茶品</strong>（1F室外）、<strong>果然 Good Eat 鳳梨酥</strong>、<strong>猿田彥珈琲</strong>濾掛包，詳見資訊頁</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--ocean)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="5" width="16" height="9" rx="2"/><path d="M1 9h16"/><circle cx="5" cy="12" r="1.2"/><circle cx="13" cy="12" r="1.2"/></svg>
+            <div class="dtxt"><strong>免費</strong>大型停車場，逛完開車3分鐘回飯店</div>
+          </div>
+          <a class="nav-a full amber" href="https://maps.google.com/?q=24.258961199999998,120.5185053" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ DAY 2 ════ -->
+<div class="day-section day2" id="tab1">
+  <div class="date-header day2-hdr">
+    <div class="date-bubble"><span class="dm">APR</span><span class="dd">19</span></div>
+    <div class="date-info">
+      <h2>梧棲漫步‧漁港午餐</h2>
+      <p>不用趕，早餐吃飽再出發</p>
+    </div>
+  </div>
+
+  <div class="stop-list day2">
+
+    <!-- ① 早餐 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--teal)" stroke-width="1.6"/>
+          <text x="11" y="15" text-anchor="middle" font-size="9" fill="var(--teal)" font-family="'Noto Sans TC',sans-serif">早</text>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar teal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">08:00 — 09:30</div>
+            <div class="stop-name">飯店早餐</div>
+          </div>
+          <span class="chip teal">早餐</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M13 5h1a3 3 0 010 6h-1"/><path d="M2 5h11v7a3 3 0 01-3 3H5a3 3 0 01-3-3V5z"/><line x1="5" y1="1" x2="5" y2="3"/><line x1="8" y1="1" x2="8" y2="3"/></svg>
+            <div class="dtxt">禾憶歐亞餐酒館（飯店1樓），自助式早餐供應至 11:00</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">退房至 12:00，不用趕，吃飽再出發</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 文化出張所 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--teal)" stroke-width="1.6"/>
+          <!-- 手繪日式鳥居 -->
+          <rect x="8" y="13" width="6" height="4" stroke="var(--teal)" stroke-width="1.1" fill="none"/>
+          <line x1="8" y1="9" x2="14" y2="9" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="11" x2="15" y2="11" stroke="var(--teal)" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="10" y1="9" x2="10" y2="17" stroke="var(--teal)" stroke-width="1.1"/>
+          <line x1="12" y1="9" x2="12" y2="17" stroke="var(--teal)" stroke-width="1.1"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar teal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">09:45 — 11:00</div>
+            <div class="stop-name">梧棲文化出張所</div>
+          </div>
+          <span class="chip teal">日式老屋</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/><circle cx="9" cy="7" r="1.8"/></svg>
+            <div class="dtxt">台中市梧棲區梧棲路142號（從飯店步行約5分鐘）</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">週四至週一 10:00–18:00（<strong>週二、三公休</strong>）<br>4/19 週日正常開放 ✓</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2L3 7v9h4v-5h4v5h4V7z"/></svg>
+            <div class="dtxt">日式木造老屋、浴衣體驗、冰淇淋、拍照打卡</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M4 2L2 6v10a1 1 0 001 1h12a1 1 0 001-1V6l-2-4z"/><line x1="2" y1="6" x2="16" y2="6"/></svg>
+            <div class="dtxt">旁邊梧棲老街有<strong>林異香齋鹹蛋糕</strong>，可順道帶走</div>
+          </div>
+          <a class="nav-a full teal" href="https://maps.google.com/?q=24.256610600000002,120.52968839999998" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 漁港午餐 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--teal)" stroke-width="1.6"/>
+          <!-- 手繪螃蟹 -->
+          <ellipse cx="11" cy="12" rx="4" ry="3" fill="var(--teal-lt)" stroke="var(--teal)" stroke-width="1"/>
+          <circle cx="9.5" cy="10.5" r=".9" fill="var(--teal)"/>
+          <circle cx="12.5" cy="10.5" r=".9" fill="var(--teal)"/>
+          <path d="M8 12 Q5 10 5 7M14 12 Q17 10 17 7" stroke="var(--teal)" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M9 14 Q8 17 7 18M13 14 Q14 17 15 18" stroke="var(--teal)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar teal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">11:00 — 12:30</div>
+            <div class="stop-name">梧棲觀光漁港</div>
+          </div>
+          <span class="chip teal">午餐</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.94 5 9 5 9s5-5.06 5-9c0-2.76-2.24-5-5-5z"/><circle cx="9" cy="7" r="1.8"/></svg>
+            <div class="dtxt">台中市清水區北堤路30號（台中海洋館步行5分鐘）</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">09:00–19:00</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M13 5h1a3 3 0 010 6h-1"/><path d="M2 5h11v7a3 3 0 01-3 3H5a3 3 0 01-3-3V5z"/></svg>
+            <div class="dtxt">新鮮海產、烤蚵仔、現點現吃。文化出張所→漁港開車約10分鐘。</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><path d="M4 2L2 6v10a1 1 0 001 1h12a1 1 0 001-1V6l-2-4z"/><line x1="2" y1="6" x2="16" y2="6"/></svg>
+            <div class="dtxt">漁港內有魚鬆、蝦餅、魚乾等海線加工品，最具梧棲風味的伴手禮</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="5" width="16" height="9" rx="2"/><path d="M1 9h16"/><circle cx="5" cy="12" r="1.2"/><circle cx="13" cy="12" r="1.2"/></svg>
+            <div class="dtxt"><strong>免費</strong>停車場</div>
+          </div>
+          <div class="warnbox">週日人潮多，11:00 前抵達避開最擠時段。</div>
+          <a class="nav-a full teal" href="https://maps.google.com/?q=24.293410299999998,120.52122650000001" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            開啟導航
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 北返 -->
+    <div class="stop-item">
+      <div class="stop-left">
+        <svg class="node-svg" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="9" stroke="var(--teal)" stroke-width="1.6" stroke-dasharray="2.5 2"/>
+          <!-- 手繪車 -->
+          <rect x="5" y="12" width="12" height="5" rx="1.5" fill="var(--teal-lt)" stroke="var(--teal)" stroke-width="1"/>
+          <path d="M7 12 L8.5 9 L13.5 9 L15 12" stroke="var(--teal)" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="8" cy="17" r="1.2" fill="var(--teal)"/>
+          <circle cx="14" cy="17" r="1.2" fill="var(--teal)"/>
+        </svg>
+      </div>
+      <div class="stop-card" onclick="toggleCard(this)">
+        <div class="sbar teal"></div>
+        <div class="stop-header">
+          <div class="stop-meta">
+            <div class="stop-time">13:00 出發</div>
+            <div class="stop-name">北返永和</div>
+          </div>
+          <span class="chip teal">返程</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="detail">
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><polyline points="3 9 9 3 15 9"/><line x1="9" y1="3" x2="9" y2="15"/><path d="M5 15h8"/></svg>
+            <div class="dtxt">建議 13:00 前出發，週日下午國道北上容易壅塞</div>
+          </div>
+          <div class="drow">
+            <svg class="dico" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><polyline points="9 5 9 9 12 11"/></svg>
+            <div class="dtxt">預計 16:00 前返抵永和（視路況）</div>
+          </div>
+          <div class="warnbox">可先查詢國道即時路況，五楊高架若壅塞可考慮走台61線接國道3號。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ INFO ════ -->
+<div class="day-section" id="tab2">
+
+  <div class="info-block">
+    <div class="sec-title">費用 &amp; 停車速覽</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>景點／餐廳</th><th>費用</th><th>停車</th></tr></thead>
+        <tbody>
+          <tr><td>麥當勞得來速</td><td>消費自理</td><td>不下車</td></tr>
+          <tr><td>台中海洋館</td><td class="paid">全票 NT$500</td><td>停飯店或漁港</td></tr>
+          <tr><td>震大金鬱金香酒店</td><td>住宿費</td><td class="free">免費停車場</td></tr>
+          <tr><td>高美濕地</td><td class="free">免費</td><td>收費停車場</td></tr>
+          <tr><td>三井 Outlet（晚餐）</td><td>消費自理</td><td class="free">免費停車場</td></tr>
+          <tr><td>飯店早餐</td><td>含早餐方案</td><td>—</td></tr>
+          <tr><td>梧棲文化出張所</td><td class="free">免費入場</td><td>步行前往</td></tr>
+          <tr><td>梧棲觀光漁港（午餐）</td><td>消費自理</td><td class="free">免費停車場</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="sec-title">伴手禮推薦</div>
+    <div class="gift-card">
+      <div class="gift-top"></div>
+      <div class="gift-loc">三井 Outlet · 1F 室外獨立店</div>
+      <div class="gift-name">Whittard of Chelsea · 英國百年茶品</div>
+      <p class="gift-desc">超過百年歷史的英國茶品牌，茶罐設計精美如藝術品，英式皇家或童話風格。茶葉、熱巧克力、濾掛咖啡都可帶走，質感高不易損壞，台灣據點稀少，送禮首選。</p>
+    </div>
+    <div class="gift-card">
+      <div class="gift-top amber"></div>
+      <div class="gift-loc">三井 Outlet · 美食街</div>
+      <div class="gift-name">果然 Good Eat · 台中十大伴手禮鳳梨酥</div>
+      <p class="gift-desc">30年台中在地品牌，台中十大伴手禮得主，日本旅客必買品項。三井門市限定還有金沙可頌、半熟乳酪塔（當天食用）。鳳梨酥整盒裝可帶回送禮。</p>
+    </div>
+    <div class="gift-card">
+      <div class="gift-top" style="background:var(--sand-dk)"></div>
+      <div class="gift-loc">三井 Outlet · 戶外獨立店</div>
+      <div class="gift-name">猿田彥珈琲 · 日本人氣咖啡濾掛包</div>
+      <p class="gift-desc">日本超人氣文青咖啡品牌，台灣據點不多。店內販售多款咖啡豆及濾掛包，輕巧好帶，適合送給喝咖啡的朋友。</p>
+    </div>
+    <div class="gift-card">
+      <div class="gift-top teal"></div>
+      <div class="gift-loc">梧棲老街 · Day 2 步行可達</div>
+      <div class="gift-name">林異香齋 · 梧棲在地鹹蛋糕</div>
+      <p class="gift-desc">位在梧棲老街，鄰近文化出張所，Day 2 早上可順道購買。台灣少見的鹹蛋糕，口味有櫻花蝦、南瓜等，最具梧棲特色的在地伴手禮。</p>
+    </div>
+    <div class="gift-card">
+      <div class="gift-top sand"></div>
+      <div class="gift-loc">梧棲漁港 · Day 2 午餐後</div>
+      <div class="gift-name">漁港海產加工品</div>
+      <p class="gift-desc">魚鬆、蝦餅、魚乾等海線在地特產，平價且有地方特色。午餐後順手帶走，保存期長方便攜帶。</p>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="sec-title">重要提醒</div>
+    <div class="tip-row"><div class="tip-dot"></div><div>台中海洋館<strong>每場次有人數限制</strong>，務必出發前至官網預購門票並指定場次（建議選 13:30）。</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>台中海洋館<strong>每週二公休</strong>，4/18（週六）正常開放 ✓</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>海洋館4樓潮汐體驗區可下水，請<strong>自備毛巾和拖鞋</strong>，下水前需清洗足部。</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>高美濕地木棧道 <strong>18:00 關閉</strong>，須在 17:15 前抵達。4月日落約 18:20。</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>高美濕地停車場週六假日容易客滿，建議 <strong>17:00 前</strong>抵達停車。</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>梧棲文化出張所<strong>週二、三公休</strong>，4/19（週日）正常開放 ✓</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>週日下午國道北上明顯壅塞，建議 <strong>13:00 前</strong>出發北返。</div></div>
+    <div class="tip-row"><div class="tip-dot"></div><div>飯店環保政策，<strong>不主動提供一次性備品</strong>（牙刷、牙膏等），請自備。</div></div>
+  </div>
+
+</div>
+
+</div><!-- content -->
+
+<div class="footer">台中海線親子旅遊 · 二〇二六年四月</div>
+
+<script>
+function switchTab(i){
+  document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.day-section').forEach((s,j)=>s.classList.toggle('active',i===j));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleCard(c){
+  const o=c.classList.contains('expanded');
+  document.querySelectorAll('.stop-card.expanded').forEach(x=>x.classList.remove('expanded'));
+  if(!o)c.classList.add('expanded');
+}
+</script>
+</body>
+</html>
